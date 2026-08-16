@@ -19,7 +19,8 @@
             "GRT/USDT:USDT",
             "ETH/USDT:USDT"
         ],
-        "pair_blacklist": []
+        "pair_blacklist": [],
+        "enable_ws": false
     },
     "pairlists": [
         {

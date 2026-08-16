@@ -1,12 +1,12 @@
 {
-    "$comment": "Bucket A (gambling money) DRY RUN. Strategy set at service level. Paper wallet only - no API keys. Do not add keys to this file; live trading requires explicit sign-off from Bryce.",
+    "$comment": "Bucket A (gambling money) DRY RUN - MULTI-COIN. 8-coin basket, joint-tuned params (AdxSmaBreakout.json), max_open_trades=4. Paper only, no keys. Live requires Bryce sign-off.",
     "trading_mode": "futures",
     "margin_mode": "isolated",
     "stake_currency": "USDT",
     "stake_amount": "unlimited",
     "dry_run": true,
     "dry_run_wallet": 1000,
-    "max_open_trades": 2,
+    "max_open_trades": 4,
     "dataformat_ohlcv": "feather",
     "exchange": {
         "name": "okx",
@@ -17,9 +17,16 @@
         "ccxt_async_config": {},
         "pair_whitelist": [
             "GRT/USDT:USDT",
-            "ETH/USDT:USDT"
+            "ETH/USDT:USDT",
+            "ADA/USDT:USDT",
+            "ARB/USDT:USDT",
+            "OP/USDT:USDT",
+            "XLM/USDT:USDT",
+            "DOGE/USDT:USDT",
+            "SUI/USDT:USDT"
         ],
-        "pair_blacklist": []
+        "pair_blacklist": [],
+        "enable_ws": false
     },
     "pairlists": [
         {

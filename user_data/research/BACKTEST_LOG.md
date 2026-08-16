@@ -103,3 +103,47 @@ as verification, never select on it. Universe = 12 liquid established alts + GRT
 IS +33.6% (PF 1.77) / OOS +0.1% (PF 1.01). Worse than the GRT+ETH pair. Not deployed.
 
 ### Decision: keep ft-dry-adxsma on GRT+ETH (unchanged). Multi-coin needs a joint re-tune.
+
+---
+
+## 2026-08-16 (later still) — Joint multi-coin re-tune of AdxSmaBreakout (Claude/Zo)
+
+Test: can ADX+MA be a real multi-coin strategy if params are tuned JOINTLY across
+coins instead of on GRT alone? Hyperopt on 8-coin basket (GRT, ETH, ADA, ARB, OP,
+XLM, DOGE, SUI), SharpeHyperOptLoss, 300 epochs, max_open_trades=4, IS window.
+Config: `config-basket-tune.json`. Answer: **YES — this is the deployed bot now.**
+
+### Basket-tuned params (now active in AdxSmaBreakout.json; GRT-only saved as AdxSmaBreakout.grt-tuned.json)
+`short_sma=10, long_sma=142, adx_period=10, adx_threshold=23, atr_pct_threshold=0.027, cross_window=3, atr_mult=1.1`
+
+### Portfolio result (8 coins, 1x leverage, max_open_trades=4)
+| Window | Profit | Trades | Win% | Max DD | Sharpe |
+|---|---|---|---|---|---|
+| In-sample | +63.7% | 111 | 43.2% | 19.6% | — |
+| **Out-of-sample** | **+24.6%** | **54** | 40.7% | 10.4% | 1.28 |
+
+This beats the GRT+ETH two-coin bot (+15.9% OOS, 16 trades) on BOTH return and
+sample size. 54 OOS trades is a statistically meaningful sample — the single most
+important improvement. Tuned on 8 and tested on 8 (no cherry-picking) → clean OOS.
+
+### Honest read (per-coin OOS, joint params)
+Winners IS+OOS: ARB (+63/+28), OP (+89/+3), GRT (+1.3/+0.3). Strong-IS-weak-OOS:
+ETH (+39/-6), ADA (+20/-10). DOGE (-30 IS / +29 OOS) is a lucky-direction fluke,
+not edge. **The basket works via DIVERSIFICATION** — noisy per-coin, positive in
+aggregate — not because every coin has a clean edge. That's exactly how real
+multi-coin systems behave, and it's the honest way to raise returns WITHOUT
+leverage (more independent bets, not bigger bets). Per-coin params tuned for GRT
+alone gave GRT +72.7% IS but don't generalize; joint params trade GRT's solo
+brilliance for basket robustness. Correct trade for a multi-coin bot.
+
+### Deployed (2026-08-16)
+- `ft-dry-adxsma` UPDATED → 8-coin basket, basket-tuned params, max_open_trades=4,
+  1000 USDT paper, 1x. This is now the primary Bucket A bot.
+- `ft-dry-supertrend` unchanged (GRT+ETH benchmark).
+
+### Leverage guidance recorded for Bryce (his question)
+Leverage multiplies returns AND drawdown AND adds liquidation risk — it is a
+position-size dial, not an edge. Rule: Bucket B always 1x; Bucket A 1x until a
+strategy shows months of clean dry-run matching backtest, then 2-3x ceiling on
+written-off capital only. Never the 10-20x exchanges offer. All numbers in this
+log are 1x. To see any of them at Nx, multiply profit AND drawdown by ~N.

@@ -16,10 +16,12 @@ merges stay clean.
 ```
 user_data/
   strategies/          # One class per file. Every file's docstring cites its source.
-    AdxSmaBreakout.py      # Bucket A primary (from Quant Tactics ADX+MA video)
+    AdxSmaBreakout.py      # Bucket A PRIMARY. Deployed multi-coin (8-coin basket).
+                           #   Active params = basket-tuned (AdxSmaBreakout.json).
+                           #   GRT-only params archived: research/AdxSmaBreakout.grt-tuned.json
     SupertrendEma200.py    # Bucket A benchmark (fewest knobs, hardest to overfit)
     DonchianAdxChop.py     # Bucket A benchmark (classic breakout)
-    MeanReversionBbRsi.py  # Bucket B primary (BB+RSI+ADX mean reversion)
+    MeanReversionBbRsi.py  # Bucket B primary (BB+RSI+ADX) — NO validated edge yet, not deployed
   configs/
     config-backtest.json       # Shared backtest/hyperopt config (OKX futures)
     config-dryrun-bucket-a.json  # Live dry-run, bucket A
