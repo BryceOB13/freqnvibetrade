@@ -48,6 +48,15 @@ user_data/
 7. Work on feature branches; `develop` tracks upstream freqtrade.
 8. Leverage is pinned to 1x in every strategy until Bryce explicitly changes that.
 
+## Monitoring
+- FreqUI dashboards (private, owner sign-in required):
+  - https://ft-ui-adxsma-nycedays.zo.computer (multi-coin ADX+MA bot)
+  - https://ft-ui-supertrend-nycedays.zo.computer (Supertrend benchmark)
+  Login creds are in the gitignored `config-dryrun-*.json` files (`api_server` block).
+- Bot logs: `/dev/shm/ft-dry-adxsma_err.log`, `/dev/shm/ft-dry-supertrend_err.log`.
+- The `ft-ui-*` services are tunnel-only (no entrypoint) — they just expose the
+  bots' localhost API ports. Don't add entrypoints to them.
+
 ## Known sharp edges
 - Freqtrade config `"timeframe"` overrides the strategy's own timeframe — leave it
   OUT of shared configs; strategies declare their own.
