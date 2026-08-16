@@ -141,6 +141,28 @@ brilliance for basket robustness. Correct trade for a multi-coin bot.
   1000 USDT paper, 1x. This is now the primary Bucket A bot.
 - `ft-dry-supertrend` unchanged (GRT+ETH benchmark).
 
+## 2026-08-16 (night) — Bucket B joint re-tune on majors: FAILED, not deployed (Claude/Zo)
+
+Method: same treatment that fixed Bucket A. MeanReversionBbRsi jointly hyperopted
+on 8 majors (BTC/ETH/SOL/XRP/ADA/LINK/LTC/AVAX), MultiMetricHyperOptLoss (penalizes
+low trade counts — guards against the earlier 2-trade degenerate), 300 epochs, IS only.
+Config: `config-bucket-b-tune.json`.
+
+Result: IS +18.4% (264 trades, 67% win — healthy MR profile) → **OOS -11.7%
+(124 trades, PF 0.62). FAIL.** Params archived at
+`research/MeanReversionBbRsi.majors-tuned.FAILED.json` (moved out of strategies/
+so nothing auto-loads them).
+
+**Verdict: BB+RSI+ADX mean-reversion has no validated edge on majors in this
+period, even with joint tuning.** Two failures now (GRT degenerate, majors joint).
+
+**STOP RULE (important):** every additional tuning attempt validated against the
+SAME OOS window erodes that window's meaning (multiple comparisons — try enough
+variants and one will pass by luck). No further Bucket B attempts against
+20260401-20260816. Revisit after the dry-run period with rolled-forward windows,
+and consider structural changes (4h timeframe, long-only spot DCA — the original
+Bucket B concept) rather than re-tuning the same shape.
+
 ### Leverage guidance recorded for Bryce (his question)
 Leverage multiplies returns AND drawdown AND adds liquidation risk — it is a
 position-size dial, not an edge. Rule: Bucket B always 1x; Bucket A 1x until a
