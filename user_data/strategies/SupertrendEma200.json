@@ -1,0 +1,28 @@
+{
+  "strategy_name": "SupertrendEma200",
+  "params": {
+    "roi": {},
+    "stoploss": {
+      "stoploss": -0.3
+    },
+    "trailing": {
+      "trailing_stop": false,
+      "trailing_stop_positive": null,
+      "trailing_stop_positive_offset": 0.0,
+      "trailing_only_offset_is_reached": false
+    },
+    "max_open_trades": {
+      "max_open_trades": 1
+    },
+    "buy": {
+      "ema_period": 157,
+      "st_mult": 5.0,
+      "st_period": 12
+    },
+    "sell": {
+      "atr_stop_mult": 1.4
+    }
+  },
+  "ft_stratparam_v": 1,
+  "export_time": "2026-08-16 04:57:08.184280+00:00"
+}

@@ -122,3 +122,5 @@ docker-compose-*.yml
 !user_data/configs/*.json
 !user_data/research
 user_data/research/hyperopt_results/
+user_data/configs/config-dryrun-*.json
+!user_data/configs/config-dryrun-*.example.json

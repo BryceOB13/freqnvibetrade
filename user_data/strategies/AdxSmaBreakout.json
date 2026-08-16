@@ -1,0 +1,31 @@
+{
+  "strategy_name": "AdxSmaBreakout",
+  "params": {
+    "roi": {},
+    "stoploss": {
+      "stoploss": -0.15
+    },
+    "trailing": {
+      "trailing_stop": false,
+      "trailing_stop_positive": null,
+      "trailing_stop_positive_offset": 0.0,
+      "trailing_only_offset_is_reached": false
+    },
+    "max_open_trades": {
+      "max_open_trades": 1
+    },
+    "buy": {
+      "adx_period": 13,
+      "adx_threshold": 27,
+      "atr_pct_threshold": 0.03,
+      "cross_window": 5,
+      "long_sma": 132,
+      "short_sma": 11
+    },
+    "sell": {
+      "atr_mult": 1.1
+    }
+  },
+  "ft_stratparam_v": 1,
+  "export_time": "2026-08-16 04:56:06.513629+00:00"
+}

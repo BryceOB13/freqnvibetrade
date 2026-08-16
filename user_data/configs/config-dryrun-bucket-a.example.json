@@ -1,0 +1,66 @@
+{
+    "$comment": "Bucket A (gambling money) DRY RUN. Strategy set at service level. Paper wallet only - no API keys. Do not add keys to this file; live trading requires explicit sign-off from Bryce.",
+    "trading_mode": "futures",
+    "margin_mode": "isolated",
+    "stake_currency": "USDT",
+    "stake_amount": "unlimited",
+    "dry_run": true,
+    "dry_run_wallet": 1000,
+    "max_open_trades": 2,
+    "dataformat_ohlcv": "feather",
+    "exchange": {
+        "name": "okx",
+        "key": "",
+        "secret": "",
+        "password": "",
+        "ccxt_config": {},
+        "ccxt_async_config": {},
+        "pair_whitelist": [
+            "GRT/USDT:USDT",
+            "ETH/USDT:USDT"
+        ],
+        "pair_blacklist": []
+    },
+    "pairlists": [
+        {
+            "method": "StaticPairList"
+        }
+    ],
+    "entry_pricing": {
+        "price_side": "same",
+        "use_order_book": true,
+        "order_book_top": 1,
+        "check_depth_of_market": {
+            "enabled": false,
+            "bids_to_ask_delta": 1
+        }
+    },
+    "exit_pricing": {
+        "price_side": "same",
+        "use_order_book": true,
+        "order_book_top": 1
+    },
+    "unfilledtimeout": {
+        "entry": 10,
+        "exit": 10,
+        "exit_timeout_count": 0,
+        "unit": "minutes"
+    },
+    "api_server": {
+        "enabled": true,
+        "listen_ip_address": "127.0.0.1",
+        "listen_port": 8080,
+        "verbosity": "error",
+        "enable_openapi": false,
+        "jwt_secret_key": "CHANGEME_generate_a_long_random_value",
+        "ws_token": "CHANGEME_generate_a_long_random_value",
+        "CORS_origins": [],
+        "username": "bryce",
+        "password": "CHANGEME_generate_a_long_random_value"
+    },
+    "internals": {
+        "process_throttle_secs": 5
+    },
+    "db_url": "sqlite:////home/workspace/freqnvibetrade/user_data/tradesv3.bucket-a.dryrun.sqlite",
+    "initial_state": "running"
+}
