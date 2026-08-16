@@ -115,3 +115,10 @@ target/
 !config_examples/config_freqai.example.json
 
 docker-compose-*.yml
+
+# --- freqnvibetrade: keep our strategy-lab work tracked ---
+!user_data/strategies
+!user_data/configs
+!user_data/configs/*.json
+!user_data/research
+user_data/research/hyperopt_results/
